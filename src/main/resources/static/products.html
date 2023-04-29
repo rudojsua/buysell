@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<thead>
+<tr>
+    <th>id</th>
+    <th>title</th>
+    <th>description</th>
+    <th>price</th>
+    <th>city</th>
+    <th>author</th>
+</tr>
+</thead>
+<tbody>
+<h1>Welcome to my website!</h1>
+<h1>BuySell</h1>
+<hr>
+<h4>Products from Ukraine</h4>
+<form action="/" method="get">
+    tile<input type="text" name="title"><br>
+    <input type="submit" value="Search">
+</form>
+<hr>
+<tr th:each="product : ${products}">
+    <td><a th:href="@{/product/{id}(id=${product.id})}">Product id</a></td>
+    <td th:text="${product.id}">Product id</td>
+    <td th:text="${product.title}">Product title</td>
+    <td th:text="${product.description}">Product description</td>
+    <td th:text="${product.price}">Product price</td>
+    <td th:text="${product.city}">Product city</td>
+    <td th:text="${product.author}">Product author</td>
+    <h1></h1>
+</tr>
+<tr th:if="${#lists.isEmpty(products)}">
+    <td colspan="7">No products</td>
+</tr>
+<hr>
+<h1>Create new product</h1>
+<form action="/product/create" method="post">
+    title <input type="text" name="title"><br>
+    description <input type="text" name="description"><br>
+    price <input type="number" name="price"><br>
+    city <input type="text" name="city"><br>
+    author <input type="text" name="author"><br>
+    <input type="submit" new product>
+</form>
+</tbody>
+
+</html>
