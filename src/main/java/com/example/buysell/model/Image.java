@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
@@ -16,6 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Image {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
     @Column(name = "name")
@@ -26,4 +24,11 @@ public class Image {
     private Long size;
     @Column(name = "contentType")
     private String contentType;
+    @Column(name = "isPreviewImage")
+    private boolean isPreviewImage;
+    @Column(name = "bytes")
+    @Lob
+    private byte [] bytes;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private Product product;
 }
